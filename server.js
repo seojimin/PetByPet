@@ -29,7 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-
 app.post("/customers/add", function(req, res) {
     console.log(req.body);
     dataService.addCustomers(req.body)
@@ -41,3 +40,12 @@ dataService.initialize()
     .then(() => app.listen(HTTP_PORT, onHttpStart))
     .catch(() => console.log('some error occured')); 
 
+app.get("/customers/:value", function (req, res) {
+    let number = req.params.value;
+    console.log(number);
+    dataService.getCustomerByNum(number)
+        .then(data => res.json(data))
+        .catch((err) => console.log(err))
+});
+
+    

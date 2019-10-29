@@ -39,3 +39,17 @@ module.exports.addCustomers = (customerData) => new Promise((resolve, reject) =>
     }
 });
 
+module.exports.getCustomerByNum = (num) => new Promise((resolve, reject) => {
+    try {
+        if (customers.length === 0) {
+            reject("unable to read file");
+        }
+        else {
+            resolve(customers.filter(cus => cus.customerNum == num));
+        }
+    }
+    catch (err) {
+        reject(err);
+    }
+});
+
