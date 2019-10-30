@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 app.post("/customers/add", function(req, res) {
     console.log(req.body);
-    dataService.addCustomers(req.body)
+    dataService.addCustomer(req.body)
         .then(res.redirect("/customers"))
         .catch((err) => console.log(err));
 });
