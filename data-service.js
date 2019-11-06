@@ -74,7 +74,35 @@ module.exports.addCustomer = customerData =>
                 .then(() => resolve())
                 .catch(err => reject("unable to create customer"))
         );
+    });
+
+module.exports.updateCustomer = customerData =>
+    new Promise((resolve, reject) => {
+
+        Object.keys(customerData).forEach(key => {
+            if (customerData[key] === "")
+            customerData[key] = null;
+        });
+
+        sequelize.sync().then(() =>
+            Customer.update(Object.assign({}, customerData), {
+                where: { customerNum: customerData.customerNum }
+            })
+                .then(() => resolve())
+                .catch(err => reject("unable to update customer"))
+        );
 });
+
+module.exports.deleteCustomerByNum = cusNum =>
+    new Promise((resolve, reject) => {
+        sequelize.sync().then(() =>
+            Employee.destroy({ where: { customerNum: cusNum } })
+                .then(() => resolve())
+                .catch(err => reject("unable to delete customer"))
+        );
+    });
+
+
 
 
 

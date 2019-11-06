@@ -36,6 +36,14 @@ app.post("/customers/add", function(req, res) {
         .catch((err) => console.log(err));
 });
 
+app.post("/customers/update", function (req, res){
+    let newCustomerData = req.body;
+
+    dataService.updateCustomer(newCustomerData)
+        .then(data => res.redirect("/customers"))
+        .catch(err => res.status(500).send("error occurred"));
+});
+
 dataService.initialize()
     .then(() => app.listen(HTTP_PORT, onHttpStart))
     .catch(() => console.log('some error occured')); 
@@ -47,5 +55,14 @@ app.get("/customers/:value", function (req, res) {
         .then(data => res.json(data))
         .catch((err) => console.log(err))
 });
+
+app.get("/customers/delete/:cusNum", function (req, res){
+    let empNum = req.params.empNum;
+    dataService.deleteCustomerByNum(empNum)
+        .then(() => res.redirect("/customers"))
+        .catch(() => res.status(500).send("Unable to Remove Customer / Customer not found"));
+});
+
+
 
     
