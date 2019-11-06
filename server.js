@@ -56,7 +56,7 @@ app.get("/customers/:value", function (req, res) {
         .catch((err) => console.log(err))
 });
 
-app.get("/customers/delete/:cusNum", function (req, res){
+app.delete("/customers/delete/:cusNum", function (req, res){
     let empNum = req.params.empNum;
     dataService.deleteCustomerByNum(empNum)
         .then(() => res.redirect("/customers"))
