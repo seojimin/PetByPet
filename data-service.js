@@ -96,7 +96,7 @@ module.exports.updateCustomer = customerData =>
 module.exports.deleteCustomerByNum = cusNum =>
     new Promise((resolve, reject) => {
         sequelize.sync().then(() =>
-            Employee.destroy({ where: { customerNum: cusNum } })
+            Customer.destroy({ where: { customerNum: cusNum } })
                 .then(() => resolve())
                 .catch(err => reject("unable to delete customer"))
         );
