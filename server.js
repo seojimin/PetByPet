@@ -57,8 +57,8 @@ app.get("/customers/:value", function (req, res) {
 });
 
 app.delete("/customers/delete/:cusNum", function (req, res){
-    let empNum = req.params.empNum;
-    dataService.deleteCustomerByNum(empNum)
+    let cusNum = req.params.cusNum;
+    dataService.deleteCustomerByNum(cusNum)
         .then(() => res.redirect("/customers"))
         .catch(() => res.status(500).send("Unable to Remove Customer / Customer not found"));
 });
