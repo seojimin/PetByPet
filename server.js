@@ -7,6 +7,10 @@ var express = require('express'); //Node.js web app framework
 var app = express();
 var clientSessions = require('client-sessions');
 
+const onServerStart = () => {
+    console.log("Express http server listening on " + HTTP_PORT);
+}
+
 app.use(clientSessions({
     cookieName: 'session',
     secret: 'thisisaverylongandunguessablepassword',
