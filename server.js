@@ -29,10 +29,6 @@ const ensureLogin = (req, res, next) => {
     next();
 }
 
-function onHttpStart(){
-    console.log('Express http server listening on ' + HTTP_PORT); //current 8080
-}
-
 app.get("/", function(req, res){
     res.send('PetByPet');
 });
@@ -90,7 +86,7 @@ app.delete("/customers/delete/:cusNum", function (req, res){
 });
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.send('login');
 });
 
 app.post('/login', (req, res) => {
@@ -104,17 +100,17 @@ app.post('/login', (req, res) => {
             }
             res.redirect('/customers');
         })
-        .catch(err => res.render('login', { errorMessage: err, userName: req.body.userName }));
+        .catch(err => res.send('login', { errorMessage: err, userName: req.body.userName }));
 });
 
 app.get('/register', (req, res) => {
-    res.render('register');
+    res.send('register')
 });
 
 app.post('/register', (req, res) => {
     dataServiceAuth.registerUser(req.body)
-        .then(() => res.render('register', { successMessage: "User created" }))
-        .catch(err => res.render('register', { errorMessage: err, userName: req.body.userName }))
+        .then(() => res.send('register', { successMessage: "User created" }))
+        .catch(err => res.send('register', { errorMessage: err, userName: req.body.userName }))
 });
 
 app.get('/logout', (req, res) => {
@@ -123,7 +119,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/userHistory', ensureLogin, (req, res) => {
-    res.render('userHistory')
+    res.send(req.session.user.loginHistory)
 });
 
 
