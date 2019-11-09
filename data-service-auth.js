@@ -50,7 +50,7 @@ module.exports.checkUser = userData =>
                 if (user === null)
                     reject(`Unable to find user: ${userData.userName}`);
 
-                if (userData.password === user.password)
+                if (userData.password != user.password)
                     reject(`Incorrect Password for user: ${userData.userName}`)
 
                 user.loginHistory.push({
