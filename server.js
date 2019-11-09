@@ -100,7 +100,7 @@ app.post('/login', (req, res) => {
             }
             res.redirect('/customers');
         })
-        .catch(err => res.send('login', { errorMessage: err, userName: req.body.userName }));
+        .catch(err => res.send(err));
 });
 
 app.get('/register', (req, res) => {
@@ -109,8 +109,8 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     dataServiceAuth.registerUser(req.body)
-        .then(() => res.send('register', { successMessage: "User created" }))
-        .catch(err => res.send('register', { errorMessage: err, userName: req.body.userName }))
+        .then(() => res.send("User created" ))
+        .catch(err => res.send(err))
 });
 
 app.get('/logout', (req, res) => {
