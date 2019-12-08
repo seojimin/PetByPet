@@ -1,7 +1,7 @@
 var HTTP_PORT = process.env.PORT || 8080;
 
-var dataService = require('./data-service.js');
-var dataServiceAuth = require('./data-service-auth.js');
+var dataService = require('./data-service.js.js');
+var dataServiceAuth = require('./data-service-auth.js.js');
 var bodyParser = require('body-parser');
 var express = require('express'); //Node.js web app framework 
 var app = express();
