@@ -37,7 +37,7 @@ app.get("/", function(req, res) {
 app.get("/customers", function(req, res) {
   dataService
     .getAllCustomers()
-    .then(data => res.json(data))
+    .then(data => res.json({customers: data}))
     .catch(err => console.log(err));
 });
 
