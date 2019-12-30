@@ -10,7 +10,6 @@ class App extends Component {
     this.callBackendAPI()
       .then(res => this.setState({ customers: res.customers }))
       .catch(err => console.log(err));
-
   }
   // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
